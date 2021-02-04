@@ -1,2 +1,1 @@
-# tyle-header-flutter-date-range-picker
-How to style a header the Flutter date range picker (SfdateRnagePicker) 
+**[View document in Syncfusion Flutter Knowledge base](https://www.syncfusion.com/kb/12342/how-to-style-a-header-the-flutter-date-range-picker-sfdaternagepicker)**
