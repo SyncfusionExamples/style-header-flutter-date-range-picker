@@ -10,14 +10,7 @@ class HeaderStyle extends StatefulWidget {
 }
 
 class CalendarExample extends State<HeaderStyle> {
-  DateRangePickerHeaderStyle _headerStyle;
-  int _count;
-  DateTime _midDate;
-
-  @override
-  initState() {
-    super.initState();
-  }
+  DateRangePickerHeaderStyle _headerStyle = DateRangePickerHeaderStyle();
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,15 +30,13 @@ class CalendarExample extends State<HeaderStyle> {
   }
 
   void viewChanged(DateRangePickerViewChangedArgs viewChangedDetails) {
-    SchedulerBinding.instance.addPostFrameCallback((duration) {
-      _count = (viewChangedDetails.visibleDateRange.endDate
-          .difference(viewChangedDetails.visibleDateRange.startDate)
-          .inDays);
-      var _middleDate = (_count ~/ 2).toInt();
-      _midDate = viewChangedDetails.visibleDateRange.startDate
-          .add(Duration(days: _middleDate));
+    final DateTime startDate = viewChangedDetails.visibleDateRange.startDate!;
+    final DateTime endDate = viewChangedDetails.visibleDateRange.endDate!;
+    final int count = endDate.difference(startDate).inDays;
+    final DateTime midDate = startDate.add(Duration(days: count ~/ 2));
+    SchedulerBinding.instance!.addPostFrameCallback((duration) {
       setState(() {
-        if (_midDate.month % 2 == 0) {
+        if (midDate.month % 2 == 0) {
           _headerStyle = DateRangePickerHeaderStyle(
               textAlign: TextAlign.center,
               backgroundColor: Colors.lightGreen,
