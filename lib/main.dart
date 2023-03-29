@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-void main() => runApp(HeaderStyle());
+void main() => runApp(const HeaderStyle());
 
 class HeaderStyle extends StatefulWidget {
+  const HeaderStyle({super.key});
+
   @override
   State<StatefulWidget> createState() => CalendarExample();
 }
 
 class CalendarExample extends State<HeaderStyle> {
-  DateRangePickerHeaderStyle _headerStyle = DateRangePickerHeaderStyle();
+  DateRangePickerHeaderStyle _headerStyle = const DateRangePickerHeaderStyle();
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -34,10 +37,10 @@ class CalendarExample extends State<HeaderStyle> {
     final DateTime endDate = viewChangedDetails.visibleDateRange.endDate!;
     final int count = endDate.difference(startDate).inDays;
     final DateTime midDate = startDate.add(Duration(days: count ~/ 2));
-    SchedulerBinding.instance!.addPostFrameCallback((duration) {
+    SchedulerBinding.instance.addPostFrameCallback((duration) {
       setState(() {
         if (midDate.month % 2 == 0) {
-          _headerStyle = DateRangePickerHeaderStyle(
+          _headerStyle = const DateRangePickerHeaderStyle(
               textAlign: TextAlign.center,
               backgroundColor: Colors.lightGreen,
               textStyle: TextStyle(
@@ -47,7 +50,7 @@ class CalendarExample extends State<HeaderStyle> {
                   color: Colors.red,
                   fontWeight: FontWeight.w500));
         } else {
-          _headerStyle = DateRangePickerHeaderStyle(
+          _headerStyle = const DateRangePickerHeaderStyle(
               textAlign: TextAlign.center,
               backgroundColor: Colors.purple,
               textStyle: TextStyle(
